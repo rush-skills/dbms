@@ -1,27 +1,36 @@
-<h1>Listing prerequisites</h1>
-
-<table>
+<%- model_class = Prerequisite -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => Prerequisite %></h1>
+</div>
+<table class="table table-striped">
   <thead>
     <tr>
-      <th>Prerequisite</th>
-      <th>Course</th>
-      <th colspan="3"></th>
+      <th>ID</th>
+      <th><%= model_class.human_attribute_name(:prerequisite_id) %></th>
+      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
-
   <tbody>
     <% @prerequisites.each do |prerequisite| %>
       <tr>
+        <td><%= prerequisite.id %></td>
         <td><%= prerequisite.prerequisite_id %></td>
-        <td><%= prerequisite.course %></td>
-        <td><%= link_to 'Show', prerequisite %></td>
-        <td><%= link_to 'Edit', edit_prerequisite_path(prerequisite) %></td>
-        <td><%= link_to 'Destroy', prerequisite, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%=l prerequisite.created_at, format: :long %></td>
+        <td>
+          <%= link_to prerequisite_path(prerequisite), :class => 'btn btn-xs', :title => "#{ t('.show', :default => t('helpers.links.show')) }" do %>
+            <%= glyph 'info-sign' %>
+            <%= glyph 'pencil' %>
+          <%- end -%>
+          <%= link_to prerequisite_path(prerequisite), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-xs', :title => "#{ t('.destroy', :default => t('helpers.links.destroy')) }" do %>
+            <%= glyph 'remove' %>
+          <%- end -%>
+        </td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<br>
-
-<%= link_to 'New Prerequisite', new_prerequisite_path %>
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_prerequisite_path,
+            :class => 'btn btn-primary' %>

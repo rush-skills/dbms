@@ -1,6 +1,5 @@
-<h1>Editing prerequisite</h1>
-
-<%= render 'form' %>
-
-<%= link_to 'Show', @prerequisite %> |
-<%= link_to 'Back', prerequisites_path %>
+<%- model_class = Prerequisite -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => [:'helpers.titles.edit', 'Edit %{model}'], :model => Prerequisite %></h1>
+</div>
+<%= render :partial => 'form' %>

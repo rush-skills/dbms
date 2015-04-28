@@ -1,14 +1,24 @@
-<p id="notice"><%= notice %></p>
+<%- model_class = Prerequisite -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => Prerequisite %></h1>
+</div>
 
-<p>
-  <strong>Prerequisite:</strong>
-  <%= @prerequisite.prerequisite_id %>
-</p>
+<div class="fieldset">
+  <dl>
+      <dt class="label label-default"><%= model_class.human_attribute_name(:prerequisite_id) %></dt>
+      <dd><pre class="prettyprint"><%= @prerequisite.prerequisite_id %></pre></dd>
+  </dl>
+</div>
 
-<p>
-  <strong>Course:</strong>
-  <%= @prerequisite.course %>
-</p>
+<div class="form-group">
+  <%= link_to t('.back', :default => t("helpers.links.back")),
+              prerequisites_path, :class => 'btn btn-default'  %>
+  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_prerequisite_path(@prerequisite), :class => 'btn btn-default' %>
+  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              prerequisite_path(@prerequisite),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>
+</div>
 
-<%= link_to 'Edit', edit_prerequisite_path(@prerequisite) %> |
-<%= link_to 'Back', prerequisites_path %>
