@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :prerequisites
+
   resources :course_offerings
 
   resources :students
