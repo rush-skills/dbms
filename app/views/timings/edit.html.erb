@@ -1,6 +1,5 @@
-<h1>Editing timing</h1>
-
-<%= render 'form' %>
-
-<%= link_to 'Show', @timing %> |
-<%= link_to 'Back', timings_path %>
+<%- model_class = Timing -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => [:'helpers.titles.edit', 'Edit %{model}'], :model => Timing %></h1>
+</div>
+<%= render :partial => 'form' %>
