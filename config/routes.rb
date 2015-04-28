@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :timings
+
   resources :classrooms
 
   resources :departments
