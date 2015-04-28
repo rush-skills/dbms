@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :instructors
+
   resources :course_timings
 
   resources :enrollments
