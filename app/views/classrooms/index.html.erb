@@ -1,27 +1,38 @@
-<h1>Listing classrooms</h1>
-
-<table>
+<%- model_class = Classroom -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => Classroom %></h1>
+</div>
+<table class="table table-striped">
   <thead>
     <tr>
-      <th>Building</th>
-      <th>Name</th>
-      <th colspan="3"></th>
+      <th>ID</th>
+      <th><%= model_class.human_attribute_name(:building) %></th>
+      <th><%= model_class.human_attribute_name(:name) %></th>
+      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
-
   <tbody>
     <% @classrooms.each do |classroom| %>
       <tr>
+        <td><%= classroom.id %></td>
         <td><%= classroom.building %></td>
         <td><%= classroom.name %></td>
-        <td><%= link_to 'Show', classroom %></td>
-        <td><%= link_to 'Edit', edit_classroom_path(classroom) %></td>
-        <td><%= link_to 'Destroy', classroom, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%=l classroom.created_at, format: :long %></td>
+        <td>
+          <%= link_to classroom_path(classroom), :class => 'btn btn-xs', :title => "#{ t('.show', :default => t('helpers.links.show')) }" do %>
+            <%= glyph 'info-sign' %>
+            <%= glyph 'pencil' %>
+          <%- end -%>
+          <%= link_to classroom_path(classroom), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-xs', :title => "#{ t('.destroy', :default => t('helpers.links.destroy')) }" do %>
+            <%= glyph 'remove' %>
+          <%- end -%>
+        </td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<br>
-
-<%= link_to 'New Classroom', new_classroom_path %>
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_classroom_path,
+            :class => 'btn btn-primary' %>
