@@ -1,24 +1,28 @@
-<p id="notice"><%= notice %></p>
+<%- model_class = CourseOffering -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => CourseOffering %></h1>
+</div>
 
-<p>
-  <strong>Course:</strong>
-  <%= @course_offering.course %>
-</p>
+<div class="fieldset">
+  <dl>
+      <dt class="label label-default"><%= model_class.human_attribute_name(:section_number) %></dt>
+      <dd><pre class="prettyprint"><%= @course_offering.section_number %></pre></dd>
+      <dt class="label label-default"><%= model_class.human_attribute_name(:year) %></dt>
+      <dd><pre class="prettyprint"><%= @course_offering.year %></pre></dd>
+      <dt class="label label-default"><%= model_class.human_attribute_name(:semester) %></dt>
+      <dd><pre class="prettyprint"><%= @course_offering.semester %></pre></dd>
+  </dl>
+</div>
 
-<p>
-  <strong>Section number:</strong>
-  <%= @course_offering.section_number %>
-</p>
+<div class="form-group">
+  <%= link_to t('.back', :default => t("helpers.links.back")),
+              course_offerings_path, :class => 'btn btn-default'  %>
+  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_course_offering_path(@course_offering), :class => 'btn btn-default' %>
+  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              course_offering_path(@course_offering),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>
+</div>
 
-<p>
-  <strong>Year:</strong>
-  <%= @course_offering.year %>
-</p>
-
-<p>
-  <strong>Semester:</strong>
-  <%= @course_offering.semester %>
-</p>
-
-<%= link_to 'Edit', edit_course_offering_path(@course_offering) %> |
-<%= link_to 'Back', course_offerings_path %>
