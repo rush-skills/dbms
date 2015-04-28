@@ -1,19 +1,22 @@
-<p id="notice"><%= notice %></p>
+<%- model_class = CourseTiming -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => CourseTiming %></h1>
+</div>
 
-<p>
-  <strong>Timing:</strong>
-  <%= @course_timing.timing %>
-</p>
+<div class="fieldset">
+  <dl>
+  </dl>
+</div>
 
-<p>
-  <strong>Course offering:</strong>
-  <%= @course_timing.course_offering %>
-</p>
+<div class="form-group">
+  <%= link_to t('.back', :default => t("helpers.links.back")),
+              course_timings_path, :class => 'btn btn-default'  %>
+  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_course_timing_path(@course_timing), :class => 'btn btn-default' %>
+  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              course_timing_path(@course_timing),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>
+</div>
 
-<p>
-  <strong>Classroom:</strong>
-  <%= @course_timing.classroom %>
-</p>
-
-<%= link_to 'Edit', edit_course_timing_path(@course_timing) %> |
-<%= link_to 'Back', course_timings_path %>
