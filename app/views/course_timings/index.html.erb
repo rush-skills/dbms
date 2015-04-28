@@ -1,0 +1,29 @@
+<h1>Listing course_timings</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Timing</th>
+      <th>Course offering</th>
+      <th>Classroom</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @course_timings.each do |course_timing| %>
+      <tr>
+        <td><%= course_timing.timing %></td>
+        <td><%= course_timing.course_offering %></td>
+        <td><%= course_timing.classroom %></td>
+        <td><%= link_to 'Show', course_timing %></td>
+        <td><%= link_to 'Edit', edit_course_timing_path(course_timing) %></td>
+        <td><%= link_to 'Destroy', course_timing, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Course timing', new_course_timing_path %>
