@@ -45,3 +45,17 @@ sheet1 = book.worksheet 6
 sheet1.each do |row|
   Timing.create(start: row[1],end: row[2],day: row[3])
 end
+
+Course.all.each do |c|
+  rand(3..10).times do 
+    x = CourseOffering.create(course:c, semester: ["Winter","Monsoon"].sample,year: ["2015","2014"].sample,section_number: rand(1..3))
+    t = Timing.all
+    cl = Classroom.all
+    ins = Instructor.all
+    rand(1..4).times do 
+      CourseTiming.create(course_offering_id: x.id,timing: t.sample,classroom: cl.sample)
+      x.instructors << ins.sample
+      x.save
+    end
+  end
+end
