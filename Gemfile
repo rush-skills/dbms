@@ -44,7 +44,7 @@ group :development do
   gem 'better_errors'
   gem 'pry-rails'
 end
-
+gem 'rails_admin'
 gem 'binding_of_caller'
 gem 'bootstrap-sass', github: 'twbs/bootstrap-sass'
 gem 'bootstrap-sass-extras'

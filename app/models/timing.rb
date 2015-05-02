@@ -12,4 +12,16 @@
 
 class Timing < ActiveRecord::Base
   has_many :course_timings
+  rails_admin do 
+    list do
+      field :day
+      field :start
+      field :end
+    end
+    update do
+      field :day
+      field :start
+      field :end
+    end
+  end
 end
