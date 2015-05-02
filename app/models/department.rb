@@ -10,6 +10,10 @@
 
 class Department < ActiveRecord::Base
   has_many :instructors
+  
+  validates_presence_of :name
+  
+  validates_uniqueness_of :name
    rails_admin do
     list do
       field :name
@@ -18,5 +22,8 @@ class Department < ActiveRecord::Base
     edit do
       field :name
     end
+  end
+  def to_s
+    self.name
   end
 end

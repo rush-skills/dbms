@@ -12,16 +12,27 @@
 
 class Student < ActiveRecord::Base
   has_many :enrollments
+  validates_presence_of :name
+  validates_presence_of :program
+  validates_presence_of :student_id
+  validates_uniqueness_of :student_id
   rails_admin do
     list do
       field :name
       field :program
-      field :student_id
+      field :student_id do
+        label "Student ID"
+      end
     end
     edit do
       field :name
       field :program
-      field :student_id
+      field :student_id do
+        label "Student ID"
+      end
     end
+  end
+  def to_s
+    self.name
   end
 end

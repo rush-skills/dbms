@@ -12,6 +12,11 @@
 
 class Timing < ActiveRecord::Base
   has_many :course_timings
+  
+  validates_presence_of :start
+  validates_presence_of :end
+  validates_presence_of :day
+  validates_uniqueness_of :start, :scope => [:end,:day]
   rails_admin do 
     list do
       field :day
@@ -23,5 +28,11 @@ class Timing < ActiveRecord::Base
       field :start
       field :end
     end
+  end
+  def name
+    self.to_s
+  end
+  def to_s
+    self.day.to_s + " " + self.start.strftime("%H:%M") + "-" + self.end.strftime("%H:%M")
   end
 end

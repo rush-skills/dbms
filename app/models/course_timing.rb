@@ -14,6 +14,12 @@ class CourseTiming < ActiveRecord::Base
   belongs_to :timing
   belongs_to :course_offering
   belongs_to :classroom
+  validates_uniqueness_of :course_offering, :scope => [:classroom,:timing]
+  
+  validates_presence_of :course_offering
+  validates_presence_of :classroom
+  validates_presence_of :timing
+  
   rails_admin do
     list do
       field :course_offering
@@ -25,5 +31,13 @@ class CourseTiming < ActiveRecord::Base
       field :timing
       field :classroom
     end
+  end
+  
+  def name
+    self.to_s
+  end
+  
+  def to_s
+    self.course_offering.to_s + " " + self.timing.to_s + "@" + self.classroom.to_s
   end
 end

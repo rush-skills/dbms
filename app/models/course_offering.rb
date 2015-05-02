@@ -16,6 +16,13 @@ class CourseOffering < ActiveRecord::Base
   has_many :course_timings
   has_many :enrollments
   has_and_belongs_to_many :instructors
+  
+  validates_uniqueness_of :course_id, :scope => [:section_number,:year,:semester]
+#   validates_uniqueness_of :section_number, :scope => [:course_id,:year,:semester]
+#   validates_uniqueness_of :year, :scope => [:section_number,:course_id,:semester]
+#   validates_uniqueness_of :semester, :scope => [:section_number,:year,:course_id]
+  
+  
   rails_admin do
     list do
       field :course
@@ -33,5 +40,13 @@ class CourseOffering < ActiveRecord::Base
       field :year
       field :instructors
     end
+  end
+  
+  def name
+    self.to_s
+  end
+  
+  def to_s
+    self.course.to_s + " - " + self.section_number.to_s + " - " + self.semester.to_s + ", " + self.year.to_s
   end
 end

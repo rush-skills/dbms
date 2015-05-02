@@ -13,6 +13,11 @@
 class Course < ActiveRecord::Base
   has_many :prerequisites
   has_many :course_offerings
+  has_many :prereq, foreign_key: :prerequisite_id, class_name: 'Prerequisite'
+  validates_presence_of :title
+  validates_uniqueness_of :title
+  validates_presence_of :credits
+  validates_presence_of :syllabus
   rails_admin do
     list do
       field :title
@@ -25,7 +30,10 @@ class Course < ActiveRecord::Base
       field :title
       field :credits
       field :syllabus
-      field :prerequisites
     end
+  end
+  
+  def to_s
+    self.title
   end
 end
