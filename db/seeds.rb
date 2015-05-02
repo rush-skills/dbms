@@ -59,3 +59,10 @@ Course.all.each do |c|
     end
   end
 end
+co = CourseOffering.all
+grades = ["A","A+", "B", "B-", "C", "D", "A-" , "F"]
+Student.all.each do |s|
+  20.times do 
+    Enrollment.create(student: s,course_offering: co.sample, grade: grades.sample) 
+  end
+end
