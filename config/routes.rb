@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'queries/' => "queries#index"
+
+  get 'queries/:id' => "queries#show"
+
   mount RailsAdmin::Engine => '/manage', as: 'rails_admin'
   get 'landings/index'
 

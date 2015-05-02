@@ -33,6 +33,8 @@ class Timing < ActiveRecord::Base
     self.to_s
   end
   def to_s
+    if self.start and self.end
     self.day.to_s + " " + self.start.strftime("%H:%M") + "-" + self.end.strftime("%H:%M")
+    end
   end
 end
