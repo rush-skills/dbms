@@ -23,6 +23,11 @@ class CourseOffering < ActiveRecord::Base
 #   validates_uniqueness_of :semester, :scope => [:section_number,:year,:course_id]
   
   
+  validates_presence_of :course_id
+  validates_presence_of :section_number
+  validates_presence_of :year
+  validates_presence_of :semester
+  
   rails_admin do
     list do
       field :course
