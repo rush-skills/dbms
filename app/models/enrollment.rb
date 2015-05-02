@@ -13,4 +13,16 @@
 class Enrollment < ActiveRecord::Base
   belongs_to :student
   belongs_to :course_offering
+   rails_admin do
+    list do
+      field :course_offering
+      field :student
+      field :grade
+    end
+    edit do
+      field :course_offering
+      field :student
+      field :grade
+    end
+  end
 end

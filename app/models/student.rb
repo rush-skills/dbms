@@ -12,4 +12,16 @@
 
 class Student < ActiveRecord::Base
   has_many :enrollments
+  rails_admin do
+    list do
+      field :name
+      field :program
+      field :student_id
+    end
+    edit do
+      field :name
+      field :program
+      field :student_id
+    end
+  end
 end

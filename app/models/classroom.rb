@@ -11,4 +11,15 @@
 
 class Classroom < ActiveRecord::Base
   has_many :course_timings
+  rails_admin do
+    list do
+      field :name
+      field :building
+      field :course_timings
+    end
+    edit do
+      field :name
+      field :building
+    end
+  end
 end

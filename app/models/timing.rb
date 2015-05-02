@@ -18,7 +18,7 @@ class Timing < ActiveRecord::Base
       field :start
       field :end
     end
-    update do
+    edit do
       field :day
       field :start
       field :end

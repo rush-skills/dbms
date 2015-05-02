@@ -11,4 +11,14 @@
 
 class Prerequisite < ActiveRecord::Base
   belongs_to :course
+  rails_admin do
+    list do
+      field :course_id
+      field :prerequisite_id
+    end
+    edit do
+      field :course_id
+      field :prerequisite_id
+    end
+  end
 end
