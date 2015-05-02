@@ -8,6 +8,7 @@
 #  syllabus   :text
 #  created_at :datetime
 #  updated_at :datetime
+#  number     :string(255)
 #
 
 class Course < ActiveRecord::Base
@@ -16,10 +17,13 @@ class Course < ActiveRecord::Base
   has_many :prereq, foreign_key: :prerequisite_id, class_name: 'Prerequisite'
   validates_presence_of :title
   validates_uniqueness_of :title
+  validates_presence_of :number
+  validates_uniqueness_of :number
   validates_presence_of :credits
   validates_presence_of :syllabus
   rails_admin do
     list do
+      field :number
       field :title
       field :credits
       field :syllabus
@@ -27,6 +31,7 @@ class Course < ActiveRecord::Base
       field :course_offerings
     end
     edit do
+      field :number
       field :title
       field :credits
       field :syllabus
@@ -34,6 +39,6 @@ class Course < ActiveRecord::Base
   end
   
   def to_s
-    self.title
+    self.number + " - " + self.title
   end
 end

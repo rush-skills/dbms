@@ -8,6 +8,7 @@
 #  syllabus   :text
 #  created_at :datetime
 #  updated_at :datetime
+#  number     :string(255)
 #
 
 require 'test_helper'
