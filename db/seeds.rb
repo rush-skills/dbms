@@ -47,13 +47,15 @@ sheet1.each do |row|
 end
 
 Course.all.each do |c|
-  rand(3..10).times do 
+  rand(1..2).times do 
     x = CourseOffering.create(course:c, semester: ["Winter","Monsoon"].sample,year: ["2015","2014"].sample,section_number: rand(1..3))
     t = Timing.all
     cl = Classroom.all
     ins = Instructor.all
-    rand(1..4).times do 
+    rand(1..2).times do 
       CourseTiming.create(course_offering_id: x.id,timing: t.sample,classroom: cl.sample)
+    end
+    rand(1..2).times do 
       x.instructors << ins.sample
       x.save
     end
@@ -62,7 +64,7 @@ end
 co = CourseOffering.all
 grades = ["A","A+", "B", "B-", "C", "D", "A-" , "F"]
 Student.all.each do |s|
-  20.times do 
+  rand(2..4).times do 
     Enrollment.create(student: s,course_offering: co.sample, grade: grades.sample) 
   end
 end

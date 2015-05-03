@@ -20,7 +20,7 @@ class QueriesController < ApplicationController
   end
   
   def query1
-    i = Instructor.find_by_name("Parvesh Biyani").course_offerings
+    i = Instructor.find_by_name("Alexander Fell").course_offerings
     stu = []
     i.each do |x|
       x.enrollments.each do |y|
